@@ -2,7 +2,7 @@ import {LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { FC, useEffect, useState } from "react";
 
-export const BalanceDisplay: FC = () => {
+export const BalanceDisplay: FC = ({}) => {
     const [balance, setBalance] = useState(0);
     const { connection } = useConnection();
     const { publicKey } = useWallet();
@@ -21,7 +21,7 @@ export const BalanceDisplay: FC = () => {
 
     validatePublicKey(publicKey);
     if (!publicKey) {
-      alert("ERROR: public key invalid");
+      console.error("ERROR: public key invalid");
       return;
     }
 

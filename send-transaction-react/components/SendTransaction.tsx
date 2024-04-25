@@ -2,15 +2,11 @@ import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import {
   PublicKey,
   Transaction,
-  sendAndConfirmTransaction,
   SystemProgram,
   TransactionSignature,
-  // TransactionInstruction,
 } from "@solana/web3.js";
 import { FC, useCallback, useState } from "react";
 import "dotenv/config";
-import { getKeypairFromEnvironment } from "@solana-developers/helpers";
-// import '../styles/globals.css'
 
 export const SendTransaction: FC = () => {
   const { connection } = useConnection();
@@ -63,7 +59,9 @@ export const SendTransaction: FC = () => {
       console.info("info", "Transaction sent:", signature);
 
       await connection.confirmTransaction(signature, "processed");
-      alert(`Transaction successful\nhttps://explorer.solana.com/tx/${signature}?cluster=devnet`);
+      alert(
+        `Transaction successful\nhttps://explorer.solana.com/tx/${signature}?cluster=devnet`
+      );
     } catch (error: any) {
       console.error(
         "error",
@@ -77,30 +75,34 @@ export const SendTransaction: FC = () => {
   return (
     <div>
       <div>
+        <p style={{ textAlign: "center", marginBottom: "0px", marginTop: "0px", width: "300px", height: "40px" }}>Amount in SOL to send:</p>
         {/* Input text field for amount */}
         <input
           type="text"
           value={amountToSend}
           onChange={handleAmountToSendChange}
           placeholder="Enter amount in SOL here"
-          style={{ marginBottom: '20px', width: '300px', height: '40px' }}
+          style={{ marginBottom: "20px",  width: "300px", height: "40px" }}
         />
       </div>
-      <span></span>
       <div>
+        <p style={{ textAlign: "center", marginBottom: "0px", marginTop: "0px", width: "300px", height: "40px" }}>Send SOL to:</p>
         {/* Input text field for address */}
         <input
           type="text"
           value={addressToSend}
           onChange={handleAddressToSendChange}
           placeholder="Enter the recipient's address here"
-          style={{ marginBottom: '20px', width: '300px', height: '40px' }}
+          style={{ marginBottom: "20px", width: "300px", height: "40px" }}
         />
       </div>
-      <span></span>
-      <div style={{ textAlign: 'center', height: '100px' }}>
+      <div style={{ textAlign: "center", height: "100px" }}>
         {/* Button to send data */}
-        <button onClick={onClick} disabled={!publicKey} style={{ width: '300px', height: '40px' }}>
+        <button
+          onClick={onClick}
+          disabled={!publicKey}
+          style={{ width: "300px", height: "40px" }}
+        >
           Send
         </button>
       </div>
