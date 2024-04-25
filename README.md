@@ -2,5 +2,7 @@
 > Experimental projects on Solana network
 
 ### Projects
-- /read-data/
-
+- ./custom-programs/
+- ./custom-programs-react-app/
+- ./read-data/
+- ./send-transaction-react/
